@@ -21,16 +21,6 @@ class NoticiaController extends ControllerBase
         $titulo = $this->request->getPost('titulo');
         $texto = $this->request->getPost('texto');
 
-        if(EMPTY($titulo)) {
-            $this->flash->error('Título é obrigatório');
-            return $this->response->redirect(['for' => 'noticia.cadastrar']);
-        }
-
-        if(strlen($titulo) > 255) {
-            $this->flash->error('Título não pode exceder 255 caracteres');
-            return $this->response->redirect(['for' => 'noticia.cadastrar']); 
-        }
-
         $noticia = Noticia::findFirst(
             Array(
                 "id = :id:",
@@ -93,7 +83,7 @@ class NoticiaController extends ControllerBase
         $this->flash->error('Notícia já criada');
         return $this->response->redirect(['for' => 'noticia.cadastrar']);
     }
-
+    
     public function editarAction($id)
     {   
         $noticia = Noticia::findFirst($id);

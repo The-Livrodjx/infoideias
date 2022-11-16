@@ -13,6 +13,12 @@ class Noticia extends Model
     public function initialize()
     {
         $this->setSource("noticia");
+
+        $this->hasMany(
+            'id',
+            'NoticiaCategoria',
+            'id_noticia'
+        );
     }
 
     public function getId()
